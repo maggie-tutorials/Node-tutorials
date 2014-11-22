@@ -6,7 +6,7 @@ var browser;
 suite('Cross-Page Tests', function(){
 
 	setup(function(){
-		browser = new Browser;
+		browser = new Browser();
 	});
 
 	test('requesting a group rate quote from the hood river tour page should populate the referrer field', function(done){
