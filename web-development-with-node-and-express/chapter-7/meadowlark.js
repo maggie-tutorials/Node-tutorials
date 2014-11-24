@@ -5,11 +5,22 @@ var app = express();
 
 // set up handlebars view engine
 var handlebars = require('express3-handlebars')
-						.create({ defaultLayout: 'main'});
+						.create({
+							defaultLayout: 'main',
+							helpers: {
+								section: function(name, options){
+									if(!this._sections) this._sections = {};
+									this._sections[name] = options.fn(this);
+									return null;
+								}
+							}
+						});
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
 
 app.use(express.static(__dirname + '/public'));
+
+app.use(require('body-parser')());
 
 app.set('port', process.env.PORT || 3000);
 
@@ -48,6 +59,26 @@ app.get('/tours/oregon-coast', function(req, res){
 
 app.get('/tours/request-group-rate', function(req, res){
 	res.render('tours/request-group-rate');
+});
+
+app.get('/newsletter', function(req, res){
+	res.render('newsletter', {csrf: 'CSRF token goes here'});
+});
+
+app.get('/jquery-test', function(req, res){
+	res.render('jquery-test');
+});
+
+app.post('/process', function(req, res){
+	if(req.xhr || req.accepts('json,html')==='json'){
+		res.send({ success: true });
+	} else {
+		res.redirect(303, '/thank-you');
+	}
+});
+
+app.get('/thank-you', function(req,res){
+	res.render('thank-you');
 });
 
 // custom 404 page
