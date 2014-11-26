@@ -1,0 +1,30 @@
+{
+  "name": "meadowlark",
+  "version": "1.0.0",
+  "description": "Travel company",
+  "main": "meadowlark.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.9.3",
+    "cookie-parser": "^1.3.3",
+    "express": "^4.10.2",
+    "express-session": "^1.9.2",
+    "express3-handlebars": "^0.5.2",
+    "formidable": "^1.0.15",
+    "jquery-file-upload-middleware": "^0.1.7",
+    "nodemailer": "^1.3.0"
+  },
+  "devDependencies": {
+    "chai": "^1.10.0",
+    "grunt": "^0.4.5",
+    "grunt-cafe-mocha": "^0.1.13",
+    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-exec": "^0.4.6",
+    "mocha": "^2.0.1",
+    "zombie": "^2.2.1"
+  }
+}
