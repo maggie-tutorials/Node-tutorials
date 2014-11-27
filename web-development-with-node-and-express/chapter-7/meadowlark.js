@@ -1,6 +1,7 @@
 var express = require('express');
 var fortune = require('./lib/fortune.js');
 var formidable = require('formidable');
+var credentials = require('./credentials.js');
 
 var app = express();
 
@@ -17,13 +18,19 @@ var handlebars = require('express3-handlebars')
 							}
 						});
 app.engine('handlebars', handlebars.engine);
+
 app.set('view engine', 'handlebars');
+app.set('port', process.env.PORT || 3000);
 
 app.use(express.static(__dirname + '/public'));
-
 app.use(require('body-parser')());
-
-app.set('port', process.env.PORT || 3000);
+app.use(require('cookie-parser')(credentials.cookieSecret));
+app.use(require('express-session')());
+app.use(function(req, res, next){
+	res.locals.flash = req.session.flash;
+	delete req.session.flash;
+	next();
+});
 
 // testing
 app.use(function(req, res, next){
