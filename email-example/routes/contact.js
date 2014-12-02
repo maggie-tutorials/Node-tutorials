@@ -1,8 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var nodemailer = require('nodemailer');
-var api_key = 'yourapikey';
-var domain = 'domain.mailgun.org';
+var api_key = 'key-bd8491b7aba84979fac5bf82e7d79f7d';
+var domain = 'sandboxd218808ad4614bdc9e379dbd48859443.mailgun.org';
 var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
 
 /* GET users listing. */
@@ -14,7 +14,7 @@ router.post('/', function(req, res){
 
 	var data = {
 	  from: req.body.name + ' <' + req.body.email + '>',
-	  to: 'email@email.com',
+	  to: 'serino.marghe@gmail.com',
 	  subject: 'Nuovo messaggio di posta elettronica da: ' + req.body.name,
 	  text: req.body.message
 	};
